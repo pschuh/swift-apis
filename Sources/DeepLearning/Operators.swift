@@ -12,10 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if !COMPILING_TENSORFLOW_MODULE
-import TensorFlow
-#endif
-
 /// Returns the values of the specified tensor rounded to the nearest integer, element-wise.
 public func round<Scalar: BinaryFloatingPoint>(_ x: Tensor<Scalar>) -> Tensor<Scalar> {
     return Raw.round(x)

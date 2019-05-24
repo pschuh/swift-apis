@@ -12,10 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if !COMPILING_TENSORFLOW_MODULE
-@_exported import TensorFlow
-#endif
-
 /// A neural network layer.
 ///
 /// Types that conform to `Layer` represent functions that map inputs to outputs. They may have an
