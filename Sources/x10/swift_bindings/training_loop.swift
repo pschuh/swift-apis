@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import _Differentiation
 import TensorFlow
+import _Differentiation
 @_implementationOnly import x10_xla_tensor_wrapper
 
 /// Collects correct prediction counters and loss totals.
@@ -120,12 +120,12 @@ public func formatStatistics(train trainStats: HostStatistics, test testStats: H
 }
 
 /// Collects correct prediction totals and losses on a device.
-struct Statistics {
-  var correctGuessCountTensor: Tensor<Int32>
-  var correctGuessCount: Int { return Int(correctGuessCountTensor.scalarized()) }
-  var totalSamples: Int = 0
-  var totalLoss: Float { return totalLossTensor.scalarized() }
-  var totalLossTensor: Tensor<Float>
+public struct Statistics {
+  public var correctGuessCountTensor: Tensor<Int32>
+  public var correctGuessCount: Int { return Int(correctGuessCountTensor.scalarized()) }
+  public var totalSamples: Int = 0
+  public var totalLoss: Float { return totalLossTensor.scalarized() }
+  public var totalLossTensor: Tensor<Float>
 
   var hostStats: HostStatistics {
     HostStatistics(
