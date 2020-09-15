@@ -3375,6 +3375,25 @@ final class TensorTests: XCTestCase {
     }
   }
 
+  func testSvd() throws {
+    let dims = [4, 7]
+    for m in dims {
+      for n in dims {
+        for fullMatrices in [true, false] {
+          let x = Tensor<Float>.rand([m, n])
+          let actual = x.svd(fullMatrices: fullMatrices)
+          let expected = TF(x).svd(fullMatrices: fullMatrices)
+          XCTAssert(
+            allClose(actual: TF(actual.s), expected: expected.s, relTolerance: 2e-2))
+          XCTAssert(
+            allClose(actual: TF(actual.u!), expected: expected.u!, relTolerance: 1e-3))
+          XCTAssert(
+            allClose(actual: TF(actual.v!), expected: expected.v!, relTolerance: 1e-3))
+        }
+      }
+    }
+  }
+
   func testTan() throws {
     var x = Tensor<Float>(shape: [2, 2], scalars: [1, 2, 5, 3], on: x10)
     let expected = tan(TF(x))
@@ -3683,6 +3702,7 @@ extension TensorTests {
     ("testStatelessUniformRandomInt", testStatelessUniformRandomInt),
     ("testSub", testSub),
     ("testSum", testSum),
+    ("testSvd", testSvd),
     ("testTan", testTan),
     ("testTanh", testTanh),
     ("testTile", testTile),
